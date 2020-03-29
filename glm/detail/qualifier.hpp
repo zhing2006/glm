@@ -93,7 +93,11 @@ namespace detail
 		template<length_t L, typename T>
 		struct storage<L, T, true>
 		{
+# if GLM_COMPILER & GLM_COMPILER_CUDA
+			typedef struct __align__(4 * sizeof(T)) type {
+# else
 			typedef struct alignas(L * sizeof(T)) type {
+# endif
 				T data[L];
 			} type;
 		};
@@ -101,7 +105,11 @@ namespace detail
 		template<typename T>
 		struct storage<3, T, true>
 		{
+# if GLM_COMPILER & GLM_COMPILER_CUDA
+			typedef struct __align__(4 * sizeof(T)) type {
+# else
 			typedef struct alignas(4 * sizeof(T)) type {
+# endif
 				T data[4];
 			} type;
 		};
