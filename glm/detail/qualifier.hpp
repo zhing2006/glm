@@ -94,7 +94,7 @@ namespace detail
 		struct storage<L, T, true>
 		{
 # if GLM_COMPILER & GLM_COMPILER_CUDA
-			typedef struct __align__(4 * sizeof(T)) type {
+			typedef struct __align__(L * sizeof(T)) type {
 # else
 			typedef struct alignas(L * sizeof(T)) type {
 # endif
